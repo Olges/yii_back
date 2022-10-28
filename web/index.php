@@ -8,8 +8,7 @@ error_reporting(E_ALL);
 
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : 'http://'.$_SERVER['SERVER_NAME'];
 $allowed_domains = [
-    'https://front.uib.kz',
-    'http://localhost:8080',
+    'http://localhost:8080'
 ];
 
 if (in_array($origin, $allowed_domains)) {
