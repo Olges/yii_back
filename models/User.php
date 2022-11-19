@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -15,7 +16,7 @@ use Yii;
  * @property string $access_token
  * @property int|null $created_at
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -71,4 +72,33 @@ class User extends \yii\db\ActiveRecord
     public function setPassword($password){
         return Yii::$app->security->generatePasswordHash($password);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return self::find()->andWhere(['access_token'=>$token])->one();
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    public function getAuthKey()
+    {
+        return $this->access_token;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
 }

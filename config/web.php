@@ -12,6 +12,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'v798B2IaYSd_Koa7qEw2SdY2i5BCt1aS',
@@ -58,7 +61,6 @@ $config = [
             'rules' => [
             ],
         ],
-
     ],
     'params' => $params,
 ];
