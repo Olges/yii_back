@@ -11,12 +11,12 @@ class RbacController extends Controller
         $auth = Yii::$app->authManager;
 //        $auth->removeAll();
 
-        $adminPermission = $auth->createPermission('adminPermission');
+        $adminPermission = $auth->createPermission('moderatorPermission');
         $adminPermission->description = 'Access full actions';
         $auth->add($adminPermission);
 
         // add "author" role and give this role the "createPost" permission
-        $admin = $auth->createRole('admin');
+        $admin = $auth->createRole('moderator');
         $auth->add($admin);
         $auth->addChild($admin, $adminPermission);
 
@@ -25,6 +25,6 @@ class RbacController extends Controller
 
         // Assign roles to users. 1 and 2 are IDs returned by IdentityInterface::getId()
         // usually implemented in your User model.
-        $auth->assign($admin, 1);
+        $auth->assign($admin, 2);
     }
 }

@@ -100,5 +100,12 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
-
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
+    }
 }

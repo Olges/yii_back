@@ -23,9 +23,9 @@ class ApiController extends Controller
         $auth = $behaviors['authenticator'] = [
             'class' => CompositeAuth::class,
             'authMethods' => [
-                HttpBasicAuth::class,
+//                HttpBasicAuth::class,
                 HttpBearerAuth::class,
-                QueryParamAuth::class,
+//                QueryParamAuth::class,
             ],
         ];
         unset($behaviors['authenticator']);
