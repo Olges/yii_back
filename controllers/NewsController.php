@@ -17,4 +17,8 @@ class NewsController extends Controller
     // SELECT * FROM news
     return News::find()->all();
   }
+
+  public function actionGetOneNews($id){
+    return News::findOne($id);
+  }
 }
