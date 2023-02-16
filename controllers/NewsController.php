@@ -21,4 +21,5 @@ class NewsController extends Controller
   public function actionGetOneNews($id){
     return News::findOne($id);
   }
+
 }
